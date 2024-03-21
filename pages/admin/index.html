@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://www.un.org/en/ -->
+<html dir="ltr" lang="en" class="js"><head profile="http://www.w3.org/1999/xhtml/vocab"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Peace, dignity and equality on a healthy planet">
+    <meta name="author" content="United Nations">
+
+    
+<meta name="Generator" content="Drupal 7 (http://drupal.org)">
+<link rel="alternate" type="application/rss+xml" title="United Nations RSS" href="https://www.un.org/en/rss.xml">
+<link rel="shortcut icon" href="https://www.un.org/sites/un2.un.org/themes/bootstrap_un2/favicon.ico" type="image/vnd.microsoft.icon">
+
+    <title>United Nations | Peace, dignity and equality on a healthy planet</title> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  let API = "$2b$10$F9Vl5reIv0jr2PbyoGo6XecWIY809LPakhowLEK2q3Yl.z0pbsQ1i";
+ let data;
+ function remove(id){
+  var key = id;
+  delete data.record[key]; 
+    ViewNext(data.record)
+  $('.userdata').val(JSON.stringify(data.record))
+ }
+function process(type){
+if(type == 'create'){
+let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+    console.log(req.responseText);
+  }
+};
+  
+req.open("POST", "https://api.jsonbin.io/v3/b", true);
+req.setRequestHeader("Content-Type", "application/json");
+req.setRequestHeader("X-Master-Key", "$2b$10$F9Vl5reIv0jr2PbyoGo6XecWIY809LPakhowLEK2q3Yl.z0pbsQ1i");
+req.send('{"users": {"1": { "name": "User 1", "status": "Collected" } } }');
+}
+
+if(type == 'view'){
+let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+   data = JSON.parse(req.responseText);
+    ViewNext(data.record)
+    console.log(data);
+    $('.userdata').val(req.responseText)
+  }
+};
+
+req.open("GET", "https://api.jsonbin.io/v3/b/62914d37449a1f3821f232d0/1", true);
+req.setRequestHeader("X-Master-Key", API);
+req.send();
+}
+
+if(type == 'update'){
+let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+    console.log(req.responseText);
+  }
+};
+
+req.open("PUT", "https://api.jsonbin.io/v3/b/62914d37449a1f3821f232d0", true);
+req.setRequestHeader("Content-Type", "application/json");
+req.setRequestHeader("X-Master-Key", API);
+req.send(JSON.stringify(data.record));
+}
+
+
+}
+function ViewNext(data){
+
+  $('.list').html('')
+let count = 0
+  $.each(data, function(key,value){
+    console.log(key + "/" + value );
+  var htmlString = '<div class="someclass" style="background: #0f2833;padding: 5px 20px;border-bottom: 3px solid #ffffff9e;">';
+  htmlString += '<span style="width: 50%;display: inline-block;">' + value.name + '</span>';
+  let color;
+  if(value.status == 'Delivered'){
+    color = '#0cd00c';
+  }else{
+    color = 'red';
+  }
+  htmlString += '<span  style="color:'+color+'";font-weight:bold; width: 50%;display: inline-block;">' + value.status + '</span>';
+  htmlString += '</div>';
+  $('.list').append(htmlString); 
+  count++
+
+});
+
+}
+
+
+process('view');
+
+function add(){
+  var username = $('.username').val(); //clear the victim if needed
+  var userstatus = $('.userstatus').val(); //clear the victim if needed
+  var ddate = 'u'+$.now();
+  var userdata  = {  [ddate] : { "name": username, "status":  userstatus  }  }
+  //console.log(userdata);
+  data.record = { ...data.record, ...userdata };
+  $('.userdata').val(JSON.stringify(data.record))
+    ViewNext(data.record)
+
+}
+
+</script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body  style="background: #043c52eb!important; color: white; font-size: 20px; font-weight: 500;">
+<div class="container">
+<div style="padding: 60px 40px;">
+
+  <center>
+    <img src="logo.svg" style="width: 300px" />
+    <hr>
+    <h4 style="font-weight: ;
+    background: #00000075;
+    color: white;
+    padding: 30px;
+    ">
+      UN GRANT LIST
+      <hr>
+BELOW ARE THE NAMES OF PEOPLE TO RECEIVE THE UNITED NATIONS DEMOCRACY FUND (UNDEF).  
+      <hr>
+
+IF YOU FAIL TO FIND YOUR NAME OR INFORMATION ON THE LIST PLEASE CHECK BACK LATER.
+
+    </h4></center>
+  <br>
+  <br>
+
+<div class="someclass" style="background: #0e84b8;padding: 5px 20px;border-bottom: 3px solid #ffffff9e;font-weight: bolder;"><span style="width: 50%;display: inline-block;">Name</span><span style="color: white;" ;="" width:="" 50%;display:="" inline-block;>Status</span></div>
+<div class="list">
+
+</div>
+<br>
+<div style="font-weight: ;
+    background: #00000075;
+    color: white;
+    padding: 30px;">
+CLAIMING YOUR FUNDS
+<br>
+
+Since its creation, UNDEF has awarded more than $5.6 billion Dollars.
+
+<br>
+<br>
+
+
+Your funds can be claimed after the Clearance, Delivery fee and State Tax charges has been fully paid into our Bank account. The total Cost for the Clearance, Delivery fee and State Tax charges to claim are listed below:
+
+<br>
+<br>
+
+
+$1200.00  ****  $90,000.00  
+
+<br>
+
+$2100.00  ****  $150,000.00  
+
+<br>
+
+  $3400.00  ****  $250,000.00  
+
+<br>
+
+  $4600.00  ****  $300,000.00  
+
+<br>
+
+ $5250.00  ****  $450,000.00 
+
+<br>
+
+$6,800.00  *****  $600,000.00
+
+<br>
+
+$7,500.00 *****   $750,000.00
+
+<br>
+
+$8,750.00 ***** $900,000.00
+
+<br>
+
+
+$10,000.00  ****  $1,000,000.00
+
+<br>
+
+$25,000.00   ****  $3,000,000.00
+<br>
+
+$50,000.00  ****  $5,000,000.00
+
+<br>
+
+$100,000.00  ****  $10,000,000.00
+
+<br>
+<br>
+
+As soon as the payment is facilitated, you are to send us a clear picture of your payment slip/ bank deposit slip for verification. As soon as your payment has been verified, your Claimed Grant Cash/Check will be delivered to you in within 24-48 hours.
+</div>
+</div>
+</div>
+</body>
